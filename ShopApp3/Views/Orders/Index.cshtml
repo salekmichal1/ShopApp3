@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ShopApp3.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders</h1>
+
+<form asp-controller="Orders" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="id" />
+        <input type="submit" value="Filter" />
+    </p>
+    
+</form>
+<h2>@ViewBag.NoOrder</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Order Number
+            </th>
+            <th>
+                Date Of Placing The Order
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Created By
+            </th>
+            <th>
+                In Total
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        var sum = 0;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfPlacingTheOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                @Html.DisplayFor(modelItem => item.Customer.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeSurname)
+            </td>           
+                @foreach(var dx in item.OrderedProducts)
+                {
+                    sum += dx.Quantity * Decimal.ToInt32(dx.Product.NetSellingPrice);
+                }
+            <td>  
+                @sum zł
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Customer.Id">Edit Customer</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    @if(item.WhetherTheOrderFulfilled == false)
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

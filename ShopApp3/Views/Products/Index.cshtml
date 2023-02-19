@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ShopApp3.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+
+<form asp-controller="Product" asp-action="Index" method="get">
+@*    <p>
+        Title: <input type="search" value="@ViewData["GetProductsDetails"]" name="filter" />
+        <input type="submit" value="Filter" />
+    </p>*@
+    
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               SKU
+            </th>
+            <th>
+               Product Name
+            </th>
+            <th>
+                AvailablePieces
+            </th>
+            <th>
+                NetCatalogPrice
+            </th>
+            <th>
+                NetSellingPrice
+            </th>
+            <th>
+                VatRate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailablePieces)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetCatalogPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetSellingPrice)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.VatRate)
+            </td> 
+            <td>
+            <form asp-action="Add" asp-route-id="@item.Id" asp-route-order="@Url.ActionContext.RouteData.Values["id"]">
+
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+             </form>
+            </td>
+        </tr>
+
+}
+    </tbody>
+</table>

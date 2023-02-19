@@ -1,0 +1,83 @@
+﻿@model ShopApp3.Models.Order
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Orders</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Customer.CustomerName" class="control-label"></label>
+                <input asp-for="Customer.CustomerName" class="form-control" />
+                <span asp-validation-for="Customer.CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.Surname" class="control-label"></label>
+                <input asp-for="Customer.Surname" class="form-control" />
+                <span asp-validation-for="Customer.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.CompanyName" class="control-label"></label>
+                <input asp-for="Customer.CompanyName" class="form-control" />
+                <span asp-validation-for="Customer.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.CompanyNumber" class="control-label"></label>
+                <input asp-for="Customer.CompanyNumber" class="form-control" />
+                <span asp-validation-for="Customer.CompanyNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.Street" class="control-label"></label>
+                <input asp-for="Customer.Street" class="form-control" />
+                <span asp-validation-for="Customer.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.StreetNumber" class="control-label"></label>
+                <input asp-for="Customer.StreetNumber" class="form-control" />
+                <span asp-validation-for="Customer.StreetNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.FlatNumber" class="control-label"></label>
+                <input asp-for="Customer.FlatNumber" class="form-control" />
+                <span asp-validation-for="Customer.FlatNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.PostCode" class="control-label"></label>
+                <input asp-for="Customer.PostCode" class="form-control" />
+                <span asp-validation-for="Customer.PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.City" class="control-label"></label>
+                <input asp-for="Customer.City" class="form-control" />
+                <span asp-validation-for="Customer.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.PhoneNumber" class="control-label"></label>
+                <input asp-for="Customer.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.Mail" class="control-label"></label>
+                <input asp-for="Customer.Mail" class="form-control" />
+                <span asp-validation-for="Customer.Mail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
